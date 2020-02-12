@@ -1,5 +1,4 @@
 #This is an example. The model here is a simplification of an existing one.
-
 modelName: EACS #URI: https://w3id.org/okn/i/mint/EACS
 modelVersion: v7 #URI: https://w3id.org/okn/i/mint/EACS_v7
 configuration: EACS_v7_ethiopia
@@ -10,7 +9,7 @@ description:
 - Aggregate crop supply response model for the country of South Sudan (version 2)
 author:
 - name: Rajiv Mayani  #Assume type is person unless a type:Organization is added. 
-contributor:#optional
+contributor: #optional
 - name:  Deborah Khider
 - name: Zeya Zhang
   email: blah@b.com
@@ -20,21 +19,21 @@ hasImplementationScriptLocation: #Optional
 - https://github.com/mintproject/MINT-WorkflowDomain/raw/master/WINGSWorkflowComponents/economic-v2/run
 keywords:
 - economy; land use; crop production; fertilizer costs
-hasGrid:#optional
+hasGrid: #optional
 - short_name:  Grid from the economic crop supply model
   description:
   - Grid from the economic crop supply model
   hasDimension:  0D
   hasShape:  Point
   hasSpatialResolution:  Point
-hasModelCategory:#optional
+hasModelCategory: #optional
 - Economy
 hasRegion: #Optional
 - description:
   - Area of the Pongo Basin in South Sudan
   short_name: Pongo basin region (South Sudan)
 hasSoftwareImage: mintproject/economic:v2
-hasSourceCode:#optional
+hasSourceCode: #optional
 - codeRepository: https://github.com/mintproject/MINT-WorkflowDomain/tree/master/WINGSWorkflowComponents/economic-v2
   description:
   - Code for creating an encapsulation of EACS for a model configuration (version 2)
@@ -62,7 +61,6 @@ hasInput:
     #below: maps to sd:value
     url: https://github.com/mintproject/MINT-WorkflowDomain/raw/master/WINGSWorkflowComponents/economic-v7/data/elasticity-cyclesdata.csv
     datacatalogId: FFF-e15c1f9e-c7ae-4cda-ba23-2e4f2286a18 #Optional
-    
   type: #By default these are all datasetSpecifications. The type below is an additional aid
   - https://w3id.org/wings/export/MINT#EconomicSimData
   hasDimensionality: 0 #If this is not specified, assume 0
@@ -96,7 +94,6 @@ hasInput:
     hasLongName: land cost example
     hasStandardName: land_crop__production_cost-per-area_example
     usesUnit: USD ha-1 
-
 hasOutput:
 #output 1
 - short_name: crop-yield
@@ -115,24 +112,22 @@ hasOutput:
   - short_name: c2
     description:
     - Econ C2
-  - short_name:p
+  - short_name: p
     description:
     - Econ P
-    
   #output 2
-- short_name:economic-data
+- short_name: economic-data
   description:
   - Contains data on observed prices for each crop and supply elasticities and the
     costs of production for each crop
   position: 2
   type:
   - https://w3id.org/wings/export/MINT#EconomicData
-
 hasParameter:
 - short_name: maize-crop-price-adjustment
   description:
   - Change in market price by crop
-  usesUnit: %
+  usesUnit: "%"
   value: 0 #maps to hasFixedValue
   
 

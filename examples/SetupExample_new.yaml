@@ -1,9 +1,8 @@
 #This is an example. The model here is a simplification of an existing one.
-
 modelName: EACS #URI: https://w3id.org/okn/i/mint/EACS
 modelVersion: v7 #URI: https://w3id.org/okn/i/mint/EACS_v7
-#configuration with no setup ->is modelConfig. Setup is model setup
 configuration: EACS_v7_ethiopia
+setup: EACS_v7_ethiopia_2018
 #short_name maps to label. I think it's easier to understand
 short_name: Basic configuration of the economic aggregate crop supply model (EACS) v2 
 description:
@@ -57,10 +56,17 @@ hasInput:
   description: #should always follow the short name
   - Contains the economic data used in the simulation analysis
   position: 1
+  hasValue: #maps to hasFixedResource
+  - short_name: File for the Oromia region
+    #below: maps to sd:value
+    url: https://github.com/mintproject/MINT-WorkflowDomain/raw/master/WINGSWorkflowComponents/economic-v7/data/elasticity-cyclesdata.csv
+    datacatalogId: FFF-e15c1f9e-c7ae-4cda-ba23-2e4f2286a18 #Optional
+  - short_name: Second file for the Oromia region
+    #below: maps to sd:value
+    url: https://github.com/mintproject/MINT-WorkflowDomain/raw/master/WINGSWorkflowComponents/economic-v7/data/some_other_file
   type: #By default these are all datasetSpecifications. The type below is an additional aid
   - https://w3id.org/wings/export/MINT#EconomicSimData
   hasDimensionality: 0 #If this is not specified, assume 0
-  hasFormat: csv
   variables: #Maps to hasPresentation. The information about presentations should appear last
   - short_name: c1
     description:
@@ -86,7 +92,6 @@ hasInput:
     hasLongName: land cost example
     hasStandardName: land_crop__production_cost-per-area_example
     usesUnit: USD ha-1 
-
 hasOutput:
 #output 1
 - short_name: crop-yield
@@ -108,7 +113,6 @@ hasOutput:
   - short_name: p
     description:
     - Econ P
-    
   #output 2
 - short_name: economic-data
   description:
@@ -117,15 +121,9 @@ hasOutput:
   position: 2
   type:
   - https://w3id.org/wings/export/MINT#EconomicData
-
 hasParameter:
 - short_name: maize-crop-price-adjustment
   description:
   - Change in market price by crop
   usesUnit: "%"
-  dataType: float #maps to hasDataType
-  defaultvalue: 0 #maps to hasDefaultValue
-  maxValue: 50 #optional. Maps to hasMaximumAcceptedValue
-  minValue: -50 #optional. Maps to hasMinimumAcceptedValue 
-  
-
+  value: 0 #maps to hasFixedValue
