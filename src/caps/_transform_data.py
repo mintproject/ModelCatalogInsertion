@@ -4,7 +4,7 @@ import json
 
 def create_json(yaml_file_path):
     with open(yaml_file_path, "r") as f:
-        json_obj = yaml.load(f.read())
+        json_obj = yaml.safe_load(f.read())
         
 
     model_configuration = {}
