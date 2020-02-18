@@ -788,9 +788,9 @@ def validate_file(metadata_path):
     with open(metadata_path, 'r') as metadata_stream:
         metadata_loaded = json.load(metadata_stream)
     
-    with open("./temp.yaml", "w") as f:
+    with open("./files/temp.yaml", "w") as f:
         f.write(yaml.dump(metadata_loaded))
     
-    with open("./temp.yaml", "r") as fp:
+    with open("./files/temp.yaml", "r") as fp:
         metadata_yaml = yaml.safe_load(fp)
         check_package_spec(metadata_yaml)
