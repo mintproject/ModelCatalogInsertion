@@ -119,7 +119,7 @@ ghostdriver.log
 
 # Data Files
 temp.yaml
-*.json
+
 
 # Temporary MAC Files
 */.DS_Store

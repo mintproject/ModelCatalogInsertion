@@ -1,0 +1,136 @@
+{
+  "schema": {
+    "DatasetSpecification": {
+  "description": [],
+  "hasDimensionality": [],
+  "hasFileStructure": "{}",
+  "hasFixedResource": [
+    {
+      "dataCatalogIdentifier": [],
+      "description": [],
+      "id": "",
+      "label": [],
+      "type": [],
+      "value": []
+    }
+  ],
+  "hasFormat": [],
+  "hasPresentation": [
+    {
+  "description": [],
+  "hasConstraint": [],
+  "hasDefaultValue": [],
+  "hasLongName": [],
+  "hasMaximumAcceptedValue": [],
+  "hasMinimumAcceptedValue": [],
+  "hasShortName": [],
+  "hasStandardVariable": [
+    {
+      "description": [],
+      "id": "",
+      "label": [],
+      "type": []
+    }
+  ],
+  "id": "id",
+  "label": [],
+  "partOfDataset": [
+    {
+      "description": [],
+      "hasDimensionality": [],
+      "hasFileStructure": "{}",
+      "hasFixedResource": [
+        {
+          "dataCatalogIdentifier": [],
+          "description": [],
+          "id": "",
+          "label": [],
+          "type": [],
+          "value": []
+        }
+      ],
+      "hasFormat": [],
+      "hasPresentation": [],
+      "id": "",
+      "label": [],
+      "position": [],
+      "type": []
+    }
+  ],
+  "type": [],
+  "usesUnit": []
+}
+  ],
+  "id": "",
+  "label": [],
+  "position": [],
+  "type": []
+},
+    "Parameter": {
+  "adjustsVariable": [
+    "{}",
+    "{}"
+  ],
+  "description": [],
+  "hasAcceptedValues": [],
+  "hasDataType": [],
+  "hasDefaultValue": [],
+  "hasFixedValue": [],
+  "hasMaximumAcceptedValue": [],
+  "hasMinimumAcceptedValue": [],
+  "hasPresentation": [
+    {
+      "description": [],
+      "hasConstraint": [],
+      "hasDefaultValue": [],
+      "hasLongName": [],
+      "hasMaximumAcceptedValue": [],
+      "hasMinimumAcceptedValue": [],
+      "hasShortName": [],
+      "hasStandardVariable": [
+        {
+          "description": [],
+          "id": "",
+          "label": [],
+          "type": []
+        }
+      ],
+      "id": "",
+      "label": [],
+      "partOfDataset": [
+        {
+          "description": [],
+          "hasDimensionality": [],
+          "hasFileStructure": "{}",
+          "hasFixedResource": [
+            {
+              "dataCatalogIdentifier": [],
+              "description": [],
+              "id": "",
+              "label": [],
+              "type": [],
+              "value": []
+            }
+          ],
+          "hasFormat": [],
+          "hasPresentation": [],
+          "id": "",
+          "label": [],
+          "position": [],
+          "type": []
+        }
+      ],
+      "type": [],
+      "usesUnit": []
+    }
+  ],
+  "hasStepSize": [
+  ],
+  "id": "",
+  "label": [],
+  "position": [],
+  "type": [],
+  "usesUnit": []
+}
+  }
+}
