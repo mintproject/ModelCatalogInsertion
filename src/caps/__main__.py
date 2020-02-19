@@ -55,26 +55,27 @@ def version(debug=False):
 )
 def initialize(inputs = 0, outputs = 0, parameters = 0):
 
-    with open("template.json", "r") as fp:
-        json_obj = json.load(fp.read())
+    with open("./files/initialize_schema.json", "r") as fp:
+        json_obj = json.load(fp)
 
+    template_obj = {}
     if inputs > 0:
-        temp_obj = json_obj["hasInput"][0]
-        json_obj["hasInput"] = []
-        for _ in inputs:
-            json_obj["hasInput"].append(temp)
+        template_obj["hasInput"] = []
+        for _ in range(inputs):
+            template_obj["hasInput"].append(json_obj["schema"]["DatasetSpecification"])
     
     if outputs > 0:
-        temp_obj = json_obj["hasOutput"][0]
-        json_obj["hasOutput"] = []
-        for _ in outputs:
-            json_obj["hasOutput"].append(temp)
+        template_obj["hasOutput"] = []
+        for _ in range(outputs):
+            template_obj["hasOutput"].append(json_obj["schema"]["DatasetSpecification"])
     
     if parameters > 0:
-        temp_obj = json_obj["hasParameter"][0]
-        json_obj["hasParameter"] = []
-        for _ in parameters:
-            json_obj["hasParameter"].append(temp)
+        template_obj["hasParameter"] = []
+        for _ in range(parameters):
+            template_obj["hasParameter"].append(json_obj["schema"]["Parameter"])
+    
+    with open("./transformed_json.json", "w") as fp:
+        fp.write(json.dumps(template_obj))
 
 @cli.command(help="Transform the input YAML into a Valid JSON for posting the file to Model Catalog")
 @click.argument("yaml_file_path", default=None, type=str)
