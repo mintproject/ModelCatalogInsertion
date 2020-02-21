@@ -65,13 +65,12 @@ Run this command to test the template creation functionality (with 2 inputs, 3 o
 ```
 caps-cli initialize -i 2 -o 3 -p 1
 ```
+Running the above command will generate a file named as transformed_json.json in root directory
 
 Run this command to transform the input YAML into a postable JSON object
 ```
 caps-cli push <path_of_yaml_file_from_root_of_the_project>
 ```
-
-Running the above command will generate a file named as transformed_json.json in root directory
 
 Run this command to validate the JSON schema obtained by using the above command
 ```

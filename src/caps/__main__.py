@@ -74,14 +74,19 @@ def initialize(inputs = 0, outputs = 0, parameters = 0):
         for _ in range(parameters):
             template_obj["hasParameter"].append(json_obj["schema"]["Parameter"])
     
-    with open("./transformed_json.json", "w") as fp:
-        fp.write(json.dumps(template_obj))
+    try:
+        with open("./insertion_template.json", "w") as fp:
+            fp.write(json.dumps(template_obj))
+        
+        logging.info("Generated the insertion template file in the root directory")
+    except Exception as e:
+        logging.error(str(e))
 
 @cli.command(short_help="Transform the input YAML into a Valid JSON for posting the file to Model Catalog")
 @click.argument("yaml_file_path", default=None, type=str)
 def push(yaml_file_path):
     transformed_json = _transform_data.create_json(yaml_file_path)
-    print(json.dumps(transformed_json))
+    logging.info(json.dumps(transformed_json))
 
 @cli.command(short_help="Validate the JSON obtained after creating one")
 @click.argument("metadata_file_path", default=None, type=str)
