@@ -13,4 +13,4 @@ def init_logger():
 
 
 def get_latest_version():
-    return requests.get("https://pypi.org/pypi/wcm/json").json()["info"]["version"]
+    return requests.get("https://pypi.org/pypi/caps-cli/json").json()["info"]["version"]
