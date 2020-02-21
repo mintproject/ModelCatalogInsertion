@@ -30,11 +30,11 @@ You should consider upgrading via the 'pip install --upgrade caps' command.""",
         )
 
 
-@cli.command(help="Show caps-cli version.")
+@cli.command(short_help="Show caps-cli version.")
 def version(debug=False):
     click.echo(f"{Path(sys.argv[0]).name} v{caps.__version__}")
 
-@cli.command(help="Create an empty JSON template to fill the data to be inserted in Model Catalog")
+@cli.command(short_help="Create an empty JSON template to fill the data to be inserted in Model Catalog")
 @click.option(
     "--inputs",
     "-i",
@@ -77,13 +77,13 @@ def initialize(inputs = 0, outputs = 0, parameters = 0):
     with open("./transformed_json.json", "w") as fp:
         fp.write(json.dumps(template_obj))
 
-@cli.command(help="Transform the input YAML into a Valid JSON for posting the file to Model Catalog")
+@cli.command(short_help="Transform the input YAML into a Valid JSON for posting the file to Model Catalog")
 @click.argument("yaml_file_path", default=None, type=str)
 def push(yaml_file_path):
     transformed_json = _transform_data.create_json(yaml_file_path)
     print(json.dumps(transformed_json))
 
-@cli.command(help="Validate the JSON obtained after creating one")
+@cli.command(short_help="Validate the JSON obtained after creating one")
 @click.argument("metadata_file_path", default=None, type=str)
 def validate(metadata_file_path):
     _metadata_schema.validate_file(metadata_file_path)
