@@ -208,7 +208,7 @@ for key, value in json_obj.items():
         model_configuration[key] = []
         for each_value in value:
             has_process = {}
-            has_process["label"] = [each_value]
+            has_process["label"] = [value]
             has_process["type"] = ["Process"]
             model_configuration[key].append(has_process)
     elif key == "hasSoftwareImage":
