@@ -14,6 +14,7 @@ Python3
 
 A step by step series of examples that tell you how to get a development env running
 
+#### MacOS and Linux Guide for creating virtual environment
 Create a python3 virtual environment from the parent directory of this project
 ```
 python3 -m venv caps-cli-dev
@@ -24,16 +25,32 @@ Activate the python3 virtualenv
 source caps-cli-dev/bin/activate
 ```
 
+#### Windows Guide for creating virtual environment
+Create a python3 virtual environment from the parent directory of this project
+```
+py -m venv caps-cli-dev
+```
+
+Activate the python3 virtualenv
+```
+.\caps-cli-dev\Scripts\activate
+```
+
+For more info [visit this](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+#### Building the Project
 Now navigate to the project folder (ModelCatalogInsertion)
 ```
 cd ModelCatalogInsertion
 ```
+
 
 Build the project
 ```
 python3 setup.py install
 ```
 
+#### Running the Project
 Help functionality in the CLI
 ```
 caps-cli --help
