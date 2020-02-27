@@ -3,6 +3,9 @@ import json
 import logging
 from caps import _utils
 
+class NoAliasDumper(yaml.Dumper):
+    def ignore_aliases(self, data):
+        return True
 
 def initialize(inputs=0, outputs=0, parameters=0):
     with open("./files/initialize_schema.json", "r") as fp:
@@ -25,8 +28,8 @@ def initialize(inputs=0, outputs=0, parameters=0):
             template_obj["hasParameter"].append(json_obj["schema"]["Parameter"])
 
     try:
-        with open("./insertion_template.json", "w") as fp:
-            fp.write(json.dumps(template_obj))
+        with open("./insertion_template.yaml", "w") as fp:
+            yaml.dump(template_obj, fp, Dumper = NoAliasDumper)
 
         logging.info("Generated the insertion template file in the root directory")
     except Exception as e:

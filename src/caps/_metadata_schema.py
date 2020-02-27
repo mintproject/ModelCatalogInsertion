@@ -762,7 +762,6 @@ v = Draft7Validator(schema)
 def get_schema():
     return schema
 
-
 def get_schema_version():
     return schemaVersion
 
