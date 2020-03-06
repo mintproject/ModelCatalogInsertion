@@ -9,7 +9,8 @@ install_requires = [
     "jsonschema>=3.0.0",
     "semver>=2.8.1",
     "requests",
-    "ruamel.yaml"
+    "ruamel.yaml",
+    "modelcatalog-api"
 ]
 
 
