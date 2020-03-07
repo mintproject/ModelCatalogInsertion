@@ -54,10 +54,23 @@ def version(debug=False):
     type=int,
     default=0,
 )
-def initialize(inputs=0, outputs=0, parameters=0):
+@click.option(
+    "--directory",
+    "-d",
+    type=str,
+    default="",
+    help="Specify folder to generate new component in. Entering a filename will initialize the yaml with that name"
+)
+@click.option(
+    "--force",
+    "-f",
+    is_flag=True,
+    help="Force file creation. This will override a file with the same name. Use with caution"
+)
+def initialize(inputs=0, outputs=0, parameters=0, directory="", force=False):
 
     logging.info("Initializing YAML")
-    _initialize.initialize(inputs, outputs, parameters)
+    _initialize.initialize(inputs, outputs, parameters, directory, force)
     click.secho(f"Success", fg="green")
 
 
