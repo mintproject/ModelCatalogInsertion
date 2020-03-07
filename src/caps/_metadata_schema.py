@@ -6,7 +6,7 @@ from jsonschema import Draft7Validator
 
 schemaVersion = "0.0.1"
 
-schema= {   "type": "object",
+schema = {   "type": "object",
             "required":["id"],
             "properties": {
                "hasDocumentation": {
@@ -859,6 +859,7 @@ v = Draft7Validator(schema)
 
 def get_schema():
     return schema
+
 
 def get_schema_version():
     return schemaVersion
