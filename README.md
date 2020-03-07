@@ -65,7 +65,9 @@ Run this command to test the template creation functionality (with 2 inputs, 3 o
 ```
 caps-cli initialize -i 2 -o 3 -p 1
 ```
-Running the above command will generate a file named as insertion_template.json in root directory
+Running the above command will generate a yaml outline. By default this will create the outline in the current directory, use `-d path/to/location` to speciy a location. By default the yaml will be named `example_yaml.yaml`, user can also use `-d fileName.yaml` to name the output (note the user must specify .yaml after the name. Otherwise the program does not know if it is a directory or filename). By default this will not override an existing file if they share the same name. use flag `-f` to force override.
+
+
 
 Run this command to transform the input YAML into a postable JSON object
 ```
