@@ -7,9 +7,13 @@ class NoAliasDumper(yaml.Dumper):
     def ignore_aliases(self, data):
         return True
 
+
 def initialize(inputs=0, outputs=0, parameters=0):
-    with open("./files/initialize_schema.json", "r") as fp:
-        json_obj = json.load(fp)
+    try:
+        with open("./files/initialize_schema.json", "r") as fp:
+            json_obj = json.load(fp)
+    except FileNotFoundError:
+        logging.error("Cannot initialize unless your cd is in the src file. (this should be changed to work in any dir)")
 
     template_obj = {}
     if inputs > 0:
@@ -34,6 +38,7 @@ def initialize(inputs=0, outputs=0, parameters=0):
         logging.info("Generated the insertion template file in the root directory")
     except Exception as e:
         logging.error(str(e))
+        quit()
 
 
 def _main():

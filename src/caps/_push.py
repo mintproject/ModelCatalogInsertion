@@ -9,7 +9,13 @@ from pprint import pprint
 import ast
 
 def push(yaml_file_path):
-    transformed_json = _transform_data.create_json(yaml_file_path)
+
+    try:
+        transformed_json = _transform_data.create_json(yaml_file_path)
+    except FileNotFoundError:
+        logging.error("Could not fine \"" + yaml_file_path + "\" please for typos in path name")
+        quit()
+
     configuration = modelcatalog.Configuration()
     user_api_instance = modelcatalog.DefaultApi()
     username = "dhruvrpa@usc.edu"
@@ -29,8 +35,8 @@ def push(yaml_file_path):
         configuration.access_token=access_token
 
     except ApiException as e:
-        print("Exception when calling DefaultApi->user_login_get: %s\n" % e)
-
+        logging.error("Exception when calling DefaultApi->user_login_get: %s\n" % e)
+        quit()
 
     # create an instance of the API class
     #modelcatalog.ApiClient().deserialize(transformed_json,modelcatalog.ModelConfiguration())
@@ -44,8 +50,8 @@ def push(yaml_file_path):
         print(api_response)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ModelConfigurationApi->modelconfigurations_post: %s\n" % e)
-
+        logging.error("Exception when calling ModelConfigurationApi->modelconfigurations_post: %s\n" % e)
+        quit()
 
     #logging.info(json.dumps(transformed_json))
 
