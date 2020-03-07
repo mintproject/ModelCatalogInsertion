@@ -769,33 +769,40 @@ description:
 author:
    - name: # String name. Assumes type is person unless a type:Organization is added.
 contributor: # Optional contributors to model
-   - name:  # Name of contributor
-   - name: # Multiple names supported
-     email: # Emails can also be added
-hasComponentLocation: # URL to component executable
+   - 
+      name:  # Name of contributor
+   - 
+      name: # Multiple contributers supported
+      email: # Emails can also be added
+hasComponentLocation: # URL to executable components
    - https://Link-to-location/
 hasSoftwareImage: # Docker Image Id (ie: mintproject/economic:v2)
 keywords:
    - comma; seperated; keywords
 hasGrid: # Optional
-   - shortName:  # String name
-   description:
-   - # String description
-   hasDimension:  # Dimensionality (ie: 0D)
-   hasShape:  # Shape (ie: point)
-   hasSpatialResolution:  # String spatial resolution
+   - 
+      shortName:  # String name
+      description:
+         - # String description
+      hasDimension:  # Dimensionality (ie: 0D)
+      hasShape:  # Shape (ie: Point)
+      hasSpatialResolution:  # String spatial resolution (ie: Point)
 hasModelCategory: # Optional
-   - # String category
+   - # String category (ie: Hydrology)
 hasRegion: # Optional
-   - description:
-     - # String description
-   shortName: # String name
+   - 
+      description:
+         - # String description
+      shortName: # String name
 hasSourceCode: # Optional metadata about source code
    - codeRepository: https://link-to-code-repo/
 hasOutputTimeInterval: # Optional
-- short_name: name of time interval
-  description:
-  - Enter description for time interval here
+   - 
+      shortName: name of time interval
+      description:
+         - Enter description for time interval here
+      intervalUnit: # Unit for time interval (e.g., day) 
+      intervalValue: # Value of time interval (e.g., 1)
 hasProcess: # each will be mapped to an object.
   - process 1
   - process 2
@@ -807,27 +814,27 @@ def get_hr_inputs(num):
     return """  # Details of input %i
   - shortName: Name of input %i
     description:
-    - Enter description for input %i here
+      - Enter description for input %i here
     position: %i
     hasValue:  # Complete if this input should use data from a given URL
-       - shortName:  # Name of first value
-       url:  # http://URL-to-value/
+       - shortName:  # Value Name
+         url:  # http://URL-to-value/
     type:  # https://URL-to-type/ This field is optional
     variables:  # Optional (only if variables are known)
-       - shortName:  # Name of first var
-       description:
-       - Description of var
-       hasLongName: long name of var  # string
-       hasStandardName:  # is there a standard name this variable maps to?
-       usesUnit:  # units\n\n""" % (num, num, num, num)
+       - shortName:  # Name of var
+          description:
+            - Description of var
+          hasLongName: long name of var  # string
+          hasStandardName:  # is there a standard name this variable maps to?
+          usesUnit:  # units\n\n""" % (num, num, num, num)
 
 
 # Creates human readable output text block
 def get_hr_outputs(num):
-   return """  #output %i
+    return """  #output %i
   - shortName: # String name of output %i
     description:
-    - Enter description for output %i
+      - Enter description for output %i
     hasDimensionality: # Int of dimensionality
     hasFormat: # String format (ie: csv)
     position: %i
@@ -839,7 +846,7 @@ def get_hr_outputs(num):
             - description for exampleVar1
        - short_name: exampleVar2
          description:
-            - description for exampleVar2\n\n""" %(num, num, num, num)
+            - description for exampleVar2\n\n""" % (num, num, num, num)
 
 
 # Creates human readable parameter text block
