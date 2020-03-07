@@ -1,0 +1,119 @@
+# This is a basic yaml example. Remove any unneeded "optional" parameters
+modelName: # String name of model
+modelVersion: # String version number
+configuration: # String configuration
+setup: # String set up
+#shortName maps to label.
+shortName: # String short name
+description:
+   - # String description
+author:
+   - name: # String name. Assumes type is person unless a type:Organization is added.
+contributor: # Optional contributors to model
+   - name:  # Name of contributor
+   - name: # Multiple names supported
+     email: # Emails can also be added
+hasComponentLocation: # URL to component executable
+   - https://Link-to-location/
+hasSoftwareImage: # Docker Image Id (ie: mintproject/economic:v2)
+keywords:
+   - comma; seperated; keywords
+hasGrid: # Optional
+   - shortName:  # String name
+   description:
+   - # String description
+   hasDimension:  # Dimensionality (ie: 0D)
+   hasShape:  # Shape (ie: point)
+   hasSpatialResolution:  # String spatial resolution
+hasModelCategory: # Optional
+   - # String category
+hasRegion: # Optional
+   - description:
+     - # String description
+   shortName: # String name
+hasSourceCode: # Optional metadata about source code
+   - codeRepository: https://link-to-code-repo/
+hasOutputTimeInterval: # Optional
+- short_name: name of time interval
+  description:
+  - Enter description for time interval here
+hasProcess: # each will be mapped to an object.
+  - process 1
+  - process 2
+  - process n
+
+hasInput:
+  # Details of input 1
+  - shortName: Name of input 1
+    description:
+    - Enter description for input 1 here
+    position: 1
+    hasValue:  # Complete if this input should use data from a given URL
+       - shortName:  # Name of first value
+       url:  # http://URL-to-value/
+    type:  # https://URL-to-type/ This field is optional
+    variables:  # Optional (only if variables are known)
+       - shortName:  # Name of first var
+       description:
+       - Description of var
+       hasLongName: long name of var  # string
+       hasStandardName:  # is there a standard name this variable maps to?
+       usesUnit:  # units
+
+  # Details of input 2
+  - shortName: Name of input 2
+    description:
+    - Enter description for input 2 here
+    position: 2
+    hasValue:  # Complete if this input should use data from a given URL
+       - shortName:  # Name of first value
+       url:  # http://URL-to-value/
+    type:  # https://URL-to-type/ This field is optional
+    variables:  # Optional (only if variables are known)
+       - shortName:  # Name of first var
+       description:
+       - Description of var
+       hasLongName: long name of var  # string
+       hasStandardName:  # is there a standard name this variable maps to?
+       usesUnit:  # units
+
+hasOutput:
+  #output 1
+  - shortName: # String name of output 1
+    description:
+    - Enter description for output 1
+    hasDimensionality: # Int of dimensionality
+    hasFormat: # String format (ie: csv)
+    position: 1
+    type:
+       - https://link-to-type
+    variables:
+       - shortName: exampleVar1
+         description:
+            - description for exampleVar1
+       - short_name: exampleVar2
+         description:
+            - description for exampleVar2
+
+hasParameter:
+  # Parameter 1
+  - shortName: # String name of parameter 1
+    description:
+       - Description of parameter 1
+    usesUnit: # String unit (ie "km")
+    value: # Optional value
+
+  # Parameter 2
+  - shortName: # String name of parameter 2
+    description:
+       - Description of parameter 2
+    usesUnit: # String unit (ie "km")
+    value: # Optional value
+
+  # Parameter 3
+  - shortName: # String name of parameter 3
+    description:
+       - Description of parameter 3
+    usesUnit: # String unit (ie "km")
+    value: # Optional value
+
