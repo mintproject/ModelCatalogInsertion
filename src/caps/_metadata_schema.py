@@ -856,7 +856,7 @@ def get_hr_parameters(num):
     description:
        - Description of parameter %i
     usesUnit: # String unit (ie "km")
-    value: # Optional value\n\n""" % (num, num, num)
+    value: # Optional: If the parameter has fixed value in this setup, add it here\n\n""" % (num, num, num)
 
 
 
