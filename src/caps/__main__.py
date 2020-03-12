@@ -36,7 +36,7 @@ def version(debug=False):
     click.echo(f"{Path(sys.argv[0]).name} v{caps.__version__}")
 
 
-@cli.command(help="Configure MINT API credentials")
+@cli.command(help="Configure Model Catalog API credentials")
 @click.option(
     "--profile",
     "-p",
@@ -45,9 +45,9 @@ def version(debug=False):
     default="default",
     metavar="<profile-name>",
 )
-def configure_mint_api(profile="default"):
-    api_username = click.prompt("MINT API Username")
-    api_password = click.prompt("MINT API Password", hide_input=True)
+def configure(profile="default"):
+    api_username = click.prompt("Model Catalog API Username")
+    api_password = click.prompt("Model Catalog API Password", hide_input=True)
 
     credentials_file = Path(
         os.getenv("MINT_API_CREDENTIALS_FILE", __DEFAULT_MINT_API_CREDENTIALS_FILE__)

@@ -56,6 +56,11 @@ Help functionality in the CLI
 caps-cli --help
 ```
 
+Use this command to configure username and password for the Model Catalog API
+```
+caps-cli configure --profile=<NAME_OF_PROFILE>
+```
+
 Use this command to know the details of each CLI function (options, arguments)
 ```
 caps-cli <initialize, push, validate> --help
@@ -69,7 +74,7 @@ Running the above command will generate a yaml outline. By default this will cre
 
 Run this command to transform the input YAML into a postable JSON object
 ```
-caps-cli push <path_of_yaml_file_from_root_of_the_project>
+caps-cli push --profile=<NAME_OF_PROFILE> <path_of_yaml_file_from_root_of_the_project>
 ```
 
 Run this command to validate the JSON schema obtained by using the above command
