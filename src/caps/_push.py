@@ -7,8 +7,26 @@ import modelcatalog
 from modelcatalog.rest import ApiException
 from pprint import pprint
 import ast
+from pathlib import Path
+import os
+import configparser
 
-def push(yaml_file_path):
+__DEFAULT_MINT_API_CREDENTIALS_FILE__ = "~/.mint_api/credentials"
+
+def push(yaml_file_path, profile):
+
+    credentials_file = Path(
+        os.getenv("MINT_API_CREDENTIALS_FILE", __DEFAULT_MINT_API_CREDENTIALS_FILE__)
+    ).expanduser()
+    
+    credentials = configparser.ConfigParser()
+    credentials.optionxform = str
+
+    if credentials_file.exists():
+        credentials.read(credentials_file)
+    
+    username = credentials[profile]["api_username"]
+    password = credentials[profile]["api_password"]
 
     try:
         transformed_json = _transform_data.create_json(yaml_file_path)
@@ -18,14 +36,12 @@ def push(yaml_file_path):
 
     configuration = modelcatalog.Configuration()
     user_api_instance = modelcatalog.DefaultApi()
-    username = "dhruvrpa@usc.edu"
-    password = "hRQo2ZdpCa836Q"
     # Login the user into the API to get the access token
     api_instance = modelcatalog.DefaultApi()
 
 
     configuration = modelcatalog.Configuration()
-# Configure Bearer authorization (JWT): BearerAuth
+    #Configure Bearer authorization (JWT): BearerAuth
 
     try:
         api_response = api_instance.user_login_get(username, password)
