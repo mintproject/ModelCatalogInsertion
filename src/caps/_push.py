@@ -13,7 +13,7 @@ import configparser
 
 __DEFAULT_MINT_API_CREDENTIALS_FILE__ = "~/.mint_api/credentials"
 
-def push(yaml_file_path, profile):
+def push(is_setup, yaml_file_path, profile):
 
     credentials_file = Path(
         os.getenv("MINT_API_CREDENTIALS_FILE", __DEFAULT_MINT_API_CREDENTIALS_FILE__)
@@ -35,6 +35,8 @@ def push(yaml_file_path, profile):
         quit()
 
     # Login the user into the API to get the access token
+
+
     api_instance = modelcatalog.DefaultApi()
     configuration = modelcatalog.Configuration()
 
@@ -49,16 +51,28 @@ def push(yaml_file_path, profile):
         logging.error("Exception when calling DefaultApi->user_login_get: %s\n" % e)
         quit()
 
-    api_instance = modelcatalog.ModelConfigurationApi(modelcatalog.ApiClient(configuration))
 
-    try:
-        # Create a ModelConfiguration
-        api_response = api_instance.modelconfigurations_post(username, model_configuration=transformed_json)
-        print(api_response)
-        pprint(api_response)
-    except ApiException as e:
-        logging.error("Exception when calling ModelConfigurationApi->modelconfigurations_post: %s\n" % e)
-        quit()
+    if is_setup == "false":
+
+        api_instance = modelcatalog.ModelConfigurationApi(modelcatalog.ApiClient(configuration))
+
+
+        try:
+            api_response = api_instance.modelconfigurations_post(username, model_configuration=transformed_json)
+            logging.info(api_response)
+        except ApiException as e:
+            logging.error("Exception when calling ModelConfigurationApi->modelconfigurations_post: %s\n" % e)
+            quit()
+    else:
+        api_instance = modelcatalog.ModelConfigurationSetupApi(modelcatalog.ApiClient(configuration))
+
+
+        try:
+            api_response = api_instance.modelconfigurationsetups_post(username, model_configuration_setup=transformed_json)
+            logging.info(api_response)
+        except ApiException as e:
+            logging.error("Exception when calling ModelConfigurationSetupApi->modelconfigurationsetups_post: %s\n" % e)
+            quit()
 
 
 def _main():

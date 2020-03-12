@@ -120,10 +120,11 @@ def initialize(inputs=0, outputs=0, parameters=0, directory="", force=False):
     default="default",
     metavar="<profile-name>",
 )
+@click.argument("is_setup", default="false", type=str)
 @click.argument("yaml_file_path", default=None, type=str)
-def push(yaml_file_path,  profile="default"):
+def push(is_setup, yaml_file_path,  profile="default"):
     logging.info("Pushing yaml")
-    _push.push(yaml_file_path, profile=profile)
+    _push.push(is_setup, yaml_file_path, profile=profile)
     click.secho(f"Success", fg="green")
 
 
