@@ -34,14 +34,9 @@ def push(yaml_file_path, profile):
         logging.error("Could not fine \"" + yaml_file_path + "\" please for typos in path name")
         quit()
 
-    configuration = modelcatalog.Configuration()
-    user_api_instance = modelcatalog.DefaultApi()
     # Login the user into the API to get the access token
     api_instance = modelcatalog.DefaultApi()
-
-
     configuration = modelcatalog.Configuration()
-    #Configure Bearer authorization (JWT): BearerAuth
 
     try:
         api_response = api_instance.user_login_get(username, password)
@@ -54,11 +49,7 @@ def push(yaml_file_path, profile):
         logging.error("Exception when calling DefaultApi->user_login_get: %s\n" % e)
         quit()
 
-    # create an instance of the API class
-    #modelcatalog.ApiClient().deserialize(transformed_json,modelcatalog.ModelConfiguration())
     api_instance = modelcatalog.ModelConfigurationApi(modelcatalog.ApiClient(configuration))
-    #user = 'user_example' # str | Username
-    #model_configuration = modelcatalog.ModelConfiguration() # ModelConfiguration | A new ModelConfigurationto be created (optional)
 
     try:
         # Create a ModelConfiguration
@@ -68,8 +59,6 @@ def push(yaml_file_path, profile):
     except ApiException as e:
         logging.error("Exception when calling ModelConfigurationApi->modelconfigurations_post: %s\n" % e)
         quit()
-
-    #logging.info(json.dumps(transformed_json))
 
 
 def _main():
