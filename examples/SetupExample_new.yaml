@@ -1,6 +1,6 @@
 #This is an example. The model here is a simplification of an existing one.
 modelName: EACS #URI: https://w3id.org/okn/i/mint/EACS
-modelVersion: v7 #URI: https://w3id.org/okn/i/mint/EACS_v7
+#modelVersion: v7 #URI: https://w3id.org/okn/i/mint/EACS_v7
 configuration: EACS_v7_ethiopia
 setup: EACS_v7_ethiopia_2018
 #short_name maps to label. I think it's easier to understand

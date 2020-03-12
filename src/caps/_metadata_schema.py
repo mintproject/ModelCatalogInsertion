@@ -6,7 +6,7 @@ from jsonschema import Draft7Validator
 
 schemaVersion = "0.0.1"
 
-schema= {   "type": "object",
+schema = {   "type": "object",
             "required":["id"],
             "properties": {
                "hasDocumentation": {
@@ -754,6 +754,111 @@ schema= {   "type": "object",
             "type": "object"
          }
       }
+
+
+def get_hr_metadata():
+    return """# This is a basic yaml example. Remove any unneeded \"optional\" parameters
+modelName: # String name of model
+modelVersion: # String version number
+configuration: # String configuration
+setup: # String set up
+#shortName maps to label.
+shortName: # String short name
+description:
+   - # String description
+author:
+   - name: # String name. Assumes type is person unless a type:Organization is added.
+contributor: # Optional contributors to model
+   - 
+      name:  # Name of contributor
+   - 
+      name: # Multiple contributers supported
+      email: # Emails can also be added
+hasComponentLocation: # URL to executable components
+   - https://Link-to-location/
+hasSoftwareImage: # Docker Image Id (ie: mintproject/economic:v2)
+keywords:
+   - comma; seperated; keywords
+hasGrid: # Optional
+   - 
+      shortName:  # String name
+      description:
+         - # String description
+      hasDimension:  # Dimensionality (ie: 0D)
+      hasShape:  # Shape (ie: Point)
+      hasSpatialResolution:  # String spatial resolution (ie: Point)
+hasModelCategory: # Optional
+   - # String category (ie: Hydrology)
+hasRegion: # Optional
+   - 
+      description:
+         - # String description
+      shortName: # String name
+hasSourceCode: # Optional metadata about source code
+   - codeRepository: https://link-to-code-repo/
+hasOutputTimeInterval: # Optional
+   - 
+      shortName: name of time interval
+      description:
+         - Enter description for time interval here
+      intervalUnit: # Unit for time interval (e.g., day) 
+      intervalValue: # Value of time interval (e.g., 1)
+hasProcess: # each will be mapped to an object.
+  - process 1
+  - process 2
+  - process n\n"""
+
+
+# Creates human readable inputs text block
+def get_hr_inputs(num):
+    return """  # Details of input %i
+  - shortName: Name of input %i
+    description:
+      - Enter description for input %i here
+    position: %i
+    hasValue:  # Complete if this input should use data from a given URL
+       - shortName:  # Value Name
+         url:  # http://URL-to-value/
+    type:  # https://URL-to-type/ This field is optional
+    variables:  # Optional (only if variables are known)
+       - shortName:  # Name of var
+          description:
+            - Description of var
+          hasLongName: long name of var  # string
+          hasStandardName:  # is there a standard name this variable maps to?
+          usesUnit:  # units\n\n""" % (num, num, num, num)
+
+
+# Creates human readable output text block
+def get_hr_outputs(num):
+    return """  #output %i
+  - shortName: # String name of output %i
+    description:
+      - Enter description for output %i
+    hasDimensionality: # Int of dimensionality
+    hasFormat: # String format (ie: csv)
+    position: %i
+    type:
+       - https://link-to-type
+    variables:
+       - shortName: exampleVar1
+         description:
+            - description for exampleVar1
+       - short_name: exampleVar2
+         description:
+            - description for exampleVar2\n\n""" % (num, num, num, num)
+
+
+# Creates human readable parameter text block
+def get_hr_parameters(num):
+    return """  # Parameter %i
+  - shortName: # String name of parameter %i
+    description:
+       - Description of parameter %i
+    usesUnit: # String unit (ie "km")
+    value: # Optional: If the parameter has fixed value in this setup, add it here\n\n""" % (num, num, num)
+
+
 
 
 v = Draft7Validator(schema)

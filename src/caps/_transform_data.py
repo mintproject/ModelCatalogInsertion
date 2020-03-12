@@ -104,7 +104,8 @@ def create_json(yaml_file_path):
                                 elif input_presentation == "hasShortName":
                                     has_presentation["hasShortName"] = [presentation_value]
                                 elif input_presentation == "usesUnit":
-                                    has_presentation["usesUnit"] = [presentation_value]
+                                    has_presentation["usesUnit"] = []
+                                    has_presentation["usesUnit"].append({"label": [presentation_value]})
                                 elif input_presentation == "hasStandardName":
                                     standard_variable = []
                                     if isinstance(presentation_value, list):
@@ -134,7 +135,8 @@ def create_json(yaml_file_path):
                     elif input_parameter == "description":
                         has_parameter["description"] = parameter_value
                     elif input_parameter == "usesUnit":
-                        has_parameter["usesUnit"] = [parameter_value]
+                         has_parameter["usesUnit"] = []
+                         has_parameter["usesUnit"].append({"label": [parameter_value]})
                     elif input_parameter == "dataType":
                         has_parameter["hasDataType"] = [parameter_value]
                     elif input_parameter == "defaultValue":

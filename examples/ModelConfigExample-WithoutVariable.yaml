@@ -5,11 +5,11 @@ modelName: EACS #URI: https://w3id.org/okn/i/mint/EACS
 #configuration with no setup ->is modelConfig. Setup is model setup
 configuration: EACS_v7_ethiopia
 #short_name maps to label. I think it's easier to understand
-short_name: Basic configuration of the economic aggregate crop supply model (EACS) v2 
+short_name: Basic configuration of the economic aggregate crop supply model (EACS) v2
 description:
 - Aggregate crop supply response model for the country of South Sudan (version 2)
 author:
-- name: Rajiv Mayani  #Assume type is person unless a type:Organization is added. 
+- name: Rajiv Mayani  #Assume type is person unless a type:Organization is added.
 contributor: #optional
 - name:  Deborah Khider
 - name: Zeya Zhang
@@ -46,7 +46,7 @@ hasOutputTimeInterval:
   description:
   - Time interval used in the aggregate crop supply response model for the country
     of South Sudan configuration
-  
+
 hasProcess: #each has to be mapped to an object.
   - Supply of Crop
   - Use of Fertilizer
@@ -61,15 +61,6 @@ hasInput:
   - https://w3id.org/wings/export/MINT#EconomicSimData
   hasDimensionality: 0 #If this is not specified, assume 0
   hasFormat: csv
-  variables: #Maps to hasPresentation. The information about presentations should appear last
-  - short_name: c1
-    description:
-    - costs of production per unit land area
-    hasLongName: land cost
-    hasShortName: c1
-    hasStandardName: land_crop__production_cost-per-area #maps to hasStandardVariable + standard Name.
-    #Let's assume this is a string. We'll have to convert it to an object. 
-    usesUnit: USD ha-1 
 #input2
 - short_name: economic-subsidies
   description:
@@ -79,13 +70,6 @@ hasInput:
   position: 2
   type:
   - https://w3id.org/wings/export/MINT#EconomicSubsidies
-  variables: 
-  - short_name: c2
-    description:
-    - costs of production per unit land area example
-    hasLongName: land cost example
-    hasStandardName: land_crop__production_cost-per-area_example
-    usesUnit: USD ha-1 
 
 hasOutput:
 #output 1
@@ -98,17 +82,8 @@ hasOutput:
   position: 1
   type:
   - https://w3id.org/wings/export/MINT#CropYield
-  variables:
-  - short_name: eta
-    description:
-    - Econ Eta
-  - short_name: c2
-    description:
-    - Econ C2
-  - short_name: p
-    description:
-    - Econ P
-    
+
+
   #output 2
 - short_name: economic-data
   description:
@@ -126,6 +101,4 @@ hasParameter:
   dataType: float #maps to hasDataType
   defaultvalue: 0 #maps to hasDefaultValue
   maxValue: 50 #optional. Maps to hasMaximumAcceptedValue
-  minValue: -50 #optional. Maps to hasMinimumAcceptedValue 
-  
-
+  minValue: -50 #optional. Maps to hasMinimumAcceptedValue
