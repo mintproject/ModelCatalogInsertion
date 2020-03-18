@@ -22,7 +22,7 @@ def initialize(inputs=0, outputs=0, parameters=0, dir=None, force=False):
     # If user did not give a name in dir then we will proved a default one
     hasName = os.path.splitext(path)
     if len(hasName[1]) <= 0:
-        path = os.path.join(path, "example_yaml.yaml")
+        path = os.path.join(path, "caps_outline.yaml")
 
     # Checks if file already exists
     if os.path.isfile(path):
@@ -44,17 +44,30 @@ def initialize(inputs=0, outputs=0, parameters=0, dir=None, force=False):
 
     # Creates human readable text from _metadata_schema.py
     outp += _metadata_schema.get_hr_metadata()
-    outp += "\nhasInput:\n"
+
+    # Generate inputs outline
+    if inputs > 0:
+        outp += "\nhasInput:\n"
+
     for i in range(1, inputs + 1):
         outp += _metadata_schema.get_hr_inputs(i)
-    outp += "hasOutput:\n"
+
+    # Generate outputs outline
+    if outputs > 0:
+        outp += "hasOutput:\n"
+
     for o in range(1, outputs + 1):
         outp += _metadata_schema.get_hr_outputs(o)
-    outp += "hasParameter:\n"
+
+    # Generate parameters outline
+    if parameters > 0:
+        outp += "hasParameter:\n"
+
     for p in range(1, parameters + 1):
         outp += _metadata_schema.get_hr_parameters(p)
 
     stream.write(outp)
+    logging.info("Generated \"%s\"" % path)
 
 
 def _main():

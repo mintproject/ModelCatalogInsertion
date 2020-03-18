@@ -756,6 +756,7 @@ schema = {   "type": "object",
       }
 
 
+# This is the human readable yaml string for the initialize command
 def get_hr_metadata():
     return """# This is a basic yaml example. Remove any unneeded \"optional\" parameters
 modelName: # String name of model
