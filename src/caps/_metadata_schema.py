@@ -3,6 +3,12 @@ import logging
 import yaml
 import json
 from jsonschema import Draft7Validator
+from pathlib import Path
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
 
 schemaVersion = "0.0.1"
 
@@ -891,12 +897,12 @@ def check_package_spec(spec):
    
 
 def validate_file(metadata_path):
-    with open(metadata_path, 'r') as metadata_stream:
-        metadata_loaded = json.load(metadata_stream)
-    
-    with open("./files/temp.yaml", "w") as f:
-        f.write(yaml.dump(metadata_loaded))
-    
-    with open("./files/temp.yaml", "r") as fp:
-        metadata_yaml = yaml.safe_load(fp)
-        check_package_spec(metadata_yaml)
+
+    spec = yaml.load(Path(metadata_path).open(), Loader=Loader)
+
+    try:
+        check_package_spec(spec)
+
+    except ValueError as err:
+        logging.error(err)
+        exit(1)
