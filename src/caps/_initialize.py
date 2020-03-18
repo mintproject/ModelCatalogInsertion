@@ -66,6 +66,10 @@ def initialize(inputs=0, outputs=0, parameters=0, dir=None, force=False):
     for p in range(1, parameters + 1):
         outp += _metadata_schema.get_hr_parameters(p)
 
+    if inputs == outputs == parameters == 0:
+        logging.info("This yaml has been generated with no inputs, outputs, or parameters")
+        logging.info("You can generate these using flag -i,-o,-p respectively")
+
     stream.write(outp)
     logging.info("Generated \"%s\"" % path)
 
