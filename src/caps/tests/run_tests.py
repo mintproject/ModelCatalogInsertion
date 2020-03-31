@@ -18,9 +18,7 @@ logger = logging.getLogger(__name__)
 class TestCapsCliCommands(unittest.TestCase):
     def test_configure_command(self):
         runner = CliRunner()
-        logger.info("hello")
-        result = runner.invoke(__main__.configure, input="mlsnfklsd\nkjahdkasj")
-        logger.debug(result)
+        result = runner.invoke(__main__.configure, ['--profile', 'test_profile'], input="mlsnfklsd\nkjahdkasj")
         self.assertEqual(result.exit_code, 0)
 
 if __name__ == '__main__':
