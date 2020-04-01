@@ -42,7 +42,6 @@ def push(is_setup, yaml_file_path, profile):
 
     try:
         api_response = api_instance.user_login_get(username, password)
-        pprint(api_response)
         data = json.dumps(ast.literal_eval(api_response))
         access_token = json.loads(data)["access_token"]
         configuration.access_token=access_token
@@ -56,20 +55,33 @@ def push(is_setup, yaml_file_path, profile):
 
         api_instance = modelcatalog.ModelConfigurationApi(modelcatalog.ApiClient(configuration))
 
+        with open("./src/caps/tests/metadata/test_push_wo_setup_data.json", "w") as f:
+            f.write(json.dumps(transformed_json))
 
         try:
             api_response = api_instance.modelconfigurations_post(username, model_configuration=transformed_json)
-            logging.info(api_response)
+            logging.info(api_response.id)
+
+            with open("./src/caps/tests/metadata/test_push_wo_setup_id.txt", "w") as f:
+                f.write(api_response.id) 
+            
+
         except ApiException as e:
             logging.error("Exception when calling ModelConfigurationApi->modelconfigurations_post: %s\n" % e)
             quit()
     else:
         api_instance = modelcatalog.ModelConfigurationSetupApi(modelcatalog.ApiClient(configuration))
 
+        with open("./src/caps/tests/metadata/test_push_w_setup_data.json", "w") as f:
+            f.write(json.dumps(transformed_json))
 
         try:
             api_response = api_instance.modelconfigurationsetups_post(username, model_configuration_setup=transformed_json)
             logging.info(api_response)
+            
+            with open("./src/caps/tests/metadata/test_push_w_setup_id.txt", "w") as f:
+                f.write(api_response.id)
+
         except ApiException as e:
             logging.error("Exception when calling ModelConfigurationSetupApi->modelconfigurationsetups_post: %s\n" % e)
             quit()
