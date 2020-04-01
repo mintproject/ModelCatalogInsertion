@@ -1,0 +1,61 @@
+#Every value within "<>" should be replaced with the actual value for that field
+modelName: <Name of the model. Example: Height Above Nearest Drainage.>
+modelVersion: <Version of the model. Example: 1.0.1>
+short_name: <Short Name of the model. Example: HAND>
+description:
+- <Description of the model. Example: The Height Above the Nearest Drainage (HAND) is a model that normalizes topography according to the local relative heights found along a given drainage network> 
+#Information about model authors goes below:
+author:
+#author 1 information
+- name: <Author 1 name. Example: Suzanne Pierce>
+#Information about model authors goes below (optional field):
+contributor: 
+- name:  <Name of contributor 1>
+- name: <Name of contributor 2>
+  email: <Email of contirbutor 2. Example: blah@b.com>
+#Keywords of the model separated by semicolon
+keywords:
+- <economy; land use; crop production; fertilizer costs>
+hasModelCategory: #optional
+- <Category 1. Example: Hydrology>
+- <Category 2. Example: River>
+#information about the region where the model applies (optional field)
+hasRegion: 
+- description:
+  - <Sentence with a sescription of the region. For example: Area of Barton Springs, in Austin, texas>
+  short_name: <short name of the region. Example: Barton Springs>
+
+#Information about the source code to execute the model. This field is optional  
+hasSourceCode: 
+- codeRepository: <https://github.com/code>
+  description:
+  - <Description of what the code does. Example: This is an executable >
+  short_name: <short name of code>
+
+#A model may have input files that are required to execute them. We can specify them here.
+hasInput:
+#input1
+- short_name: <input file 1>
+  description: #should always follow the short name
+  - <File used to read input data for the analysis>
+  
+#input2
+- short_name: <input file 2>
+  description:
+  - <File used to read a second database>
+  hasFormat: <txt>
+  
+#A model usually produces one or multiple files with the outputs
+hasOutput:
+#output 1
+- short_name: <predictions>
+  description:
+  - <Contains the predictions of the model>
+  hasFormat: <csv>
+
+#Models may have parameters specifying thresholds or other numerical values that need to be described
+hasParameter:
+- short_name: <parameter1>
+  description:
+  - <Description of what the parameter does>
+  type: <float>
