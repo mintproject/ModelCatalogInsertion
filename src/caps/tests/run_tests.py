@@ -32,12 +32,28 @@ def make_request(request_uri, request_type, access_token, params):
         response = requests.get(request_uri, params = params, headers = headers)
         return response
 
+
+def recursive_items(dictionary):
+        if type(dictionary) is dict:
+            for key, value in dictionary.items():
+                    if type(value) is dict:
+                        recursive_items(value)
+                    elif type(value) is list:
+                        for l in value:
+                            recursive_items(l)
+                    elif type(value) is str:
+                        if key == 'id':
+                            if("/w3id.org" in dictionary[key]):
+                                dictionary[key] =  dictionary[key].split("/")[-1]
+        return dictionary
+
 class TestCapsCliCommands(unittest.TestCase):
     def test_configure_command(self):
         runner = CliRunner()
         result = runner.invoke(__main__.configure, ['--profile', 'test_profile'], input="mlsnfklsd\nkjahdkasj")
         self.assertEqual(result.exit_code, 0)
-    
+
+
     def test_push_command_without_setup(self):
         
         # For current testing implementation please create a profile named dhruv with the above username and password
@@ -67,19 +83,39 @@ class TestCapsCliCommands(unittest.TestCase):
             log.error("There is some issue while getting the username and password")
             exit(1)
 
+
+        api_instance = modelcatalog.ModelConfigurationApi(modelcatalog.ApiClient(configuration))
+        api_response = api_instance.custom_modelconfigurations_id_get(generated_id,username=username)
         
-        api_response = make_request("https://api.models.mint.isi.edu/v1.4.0/modelconfigurations/" + generated_id, "GET", access_token, {"username": username})
+        #api_response = make_request("https://api.models.mint.isi.edu/v1.4.0/custom/modelconfigurations/" + generated_id, "GET", access_token, {"username": username})
 
         input_data["id"] = "https://w3id.org/okn/i/mint/" + generated_id
-        diff = DeepDiff(input_data, api_response.json(), ignore_order=True)
+        #print(input_data)
+
+        #print(api_response.to_dict())
+        # input_data['author']=[]
+        # input_data['contributor']=[]
+        response=api_response.to_dict()
+        res=recursive_items(response)
+        #print(res)
+        # response['author']=[]
+        # response['contributor']=[]
+        # input_data['type']=[]
+        # response['type']=[]
+
+        print(input_data)
+        print(response)
+        #
+        #diff = DeepDiff(input_data, response, ignore_order=True)
+
         # logger.info("Input Data")
         # logger.info(input_data)
         # logger.info("Response Data")
         # print(api_response.json())
-        if diff:
-            logger.info("Mismatches {}".format(diff))
+        # if diff:
+        #     logger.info("Mismatches {}".format(diff))
 
-        #self.assertEqual(dict(diff), {})
+        self.assertEqual(dict(diff), {})
         self.assertEqual(result.exit_code, 0)
 
 if __name__ == '__main__':

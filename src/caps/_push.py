@@ -55,15 +55,20 @@ def push(is_setup, yaml_file_path, profile):
 
         api_instance = modelcatalog.ModelConfigurationApi(modelcatalog.ApiClient(configuration))
 
-        with open("./src/caps/tests/metadata/test_push_wo_setup_data.json", "w") as f:
-            f.write(json.dumps(transformed_json))
 
         try:
             api_response = api_instance.modelconfigurations_post(username, model_configuration=transformed_json)
-            logging.info(api_response.id)
+            logging.info(api_response.to_dict())
+            #val=api_response.to_dict()
+            #print(val['id'])
+            with open("./src/caps/tests/metadata/test_push_wo_setup_data.json", "w") as f:
+                val=api_response.to_dict()
+                f.write(json.dumps(val))
+
+
 
             with open("./src/caps/tests/metadata/test_push_wo_setup_id.txt", "w") as f:
-                f.write(api_response.id) 
+                f.write(api_response.id)
             
 
         except ApiException as e:

@@ -49,7 +49,7 @@ def create_json(yaml_file_path):
                 else:
                     author = {}
                     for input_key, input_value in each_value.items():
-                        author["type"] = ["Person"]
+                        author["type"] = ["http://schema.org/Person"]
                         if input_key == "name":
                             author["label"] = [input_value]
                         elif input_key == "email":
