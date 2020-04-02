@@ -27,7 +27,7 @@ def create_json(yaml_file_path):
         if key == "modelName":
             model_configuration["id"] = MODEL_ID_URI + value
         elif key == "modelVersion":
-            model_configuration["hasVersion"] = [MODEL_ID_URI + modelName + "_" + value]
+            model_configuration["hasVersion"] = [{"id": MODEL_ID_URI + modelName + "_" + value}]
         elif key == "shortName":
             model_configuration["label"] = [value]
         elif key == "description":

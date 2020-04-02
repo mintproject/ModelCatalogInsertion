@@ -59,6 +59,9 @@ def push(is_setup, yaml_file_path, profile):
         try:
             api_response = api_instance.modelconfigurations_post(username, model_configuration=transformed_json)
             logging.info(api_response.to_dict())
+
+            logging.info(api_response.id)
+            
             #val=api_response.to_dict()
             #print(val['id'])
             with open("./src/caps/tests/metadata/test_push_wo_setup_data.json", "w") as f:
